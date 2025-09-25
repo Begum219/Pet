@@ -1,0 +1,117 @@
+{
+  "model_performance": {
+    "actual_accuracy": 0.6575,
+    "training_samples": 2000,
+    "features_used": 500,
+    "conditions_supported": [
+      "Digestive Issues",
+      "Ear Infections",
+      "Mobility Problems",
+      "Parasites",
+      "Skin Irritations"
+    ]
+  },
+  "clinical_recommendations": {
+    "Digestive Issues": {
+      "raw_notes_count": 400,
+      "extracted_actions": [
+        "rule out pancreatitis",
+        "assess small",
+        "rule out ulceration",
+        "rule out extra",
+        "perform emergency",
+        "assess liver",
+        "rule out gi",
+        "rule out partial",
+        "monitor body",
+        "assess hydration"
+      ],
+      "sample_notes": [
+        "barium study performed to evaluate motility and rule out partial obstruction.",
+        "rule out extra-gi causes of vomiting (renal condition, pancreatitis, dka)."
+      ]
+    },
+    "Mobility Problems": {
+      "raw_notes_count": 400,
+      "extracted_actions": [
+        "assess response",
+        "rule out systemic",
+        "evaluate efficacy",
+        "rule out type",
+        "assess panniculus",
+        "prevent pressure",
+        "implement regular",
+        "evaluate home",
+        "monitor for",
+        "perform joint"
+      ],
+      "sample_notes": [
+        "assess deep pain sensation in paralyzed limbs.",
+        "implement regular turning schedule and padded bedding to prevent pressure sores in recumbent animals."
+      ]
+    },
+    "Parasites": {
+      "raw_notes_count": 400,
+      "extracted_actions": [
+        "implement routine",
+        "emphasize importance",
+        "treat taenia",
+        "rule out parasites",
+        "rule out aberrant",
+        "monitor for",
+        "treat secondary",
+        "treat environment",
+        "treat if",
+        "treat tapeworms"
+      ],
+      "sample_notes": [
+        "baermann technique used to recover lungworm larvae from feces.",
+        "emphasize need to treat all dogs, cats, and ferrets in the household concurrently for ectoparasites."
+      ]
+    },
+    "Ear Infections": {
+      "raw_notes_count": 400,
+      "extracted_actions": [
+        "evaluate middle",
+        "assess response",
+        "perform thorough",
+        "rule out trauma",
+        "emphasize finishing",
+        "rule out immune",
+        "rule out neoplasia",
+        "rule out underlying",
+        "treat secondary",
+        "monitor for"
+      ],
+      "sample_notes": [
+        "my ferret scratches at his ears until they bleed.",
+        "cat seems painful when she opens her mouth wide to yawn."
+      ]
+    },
+    "Skin Irritations": {
+      "raw_notes_count": 400,
+      "extracted_actions": [
+        "assess response",
+        "rule out bacterial",
+        "evaluate patient",
+        "monitor response",
+        "prevent licking",
+        "rule out hyperadrenocorticism",
+        "rule out neoplasia",
+        "assess hydration",
+        "rule out dermatophytosis",
+        "treat secondary"
+      ],
+      "sample_notes": [
+        "fine needle aspirate (fna) performed on skin nodule; cytology pending.",
+        "consider referral to veterinary dermatologist if no improvement."
+      ]
+    }
+  },
+  "breed_data": {
+    "dog_breeds_count": 87,
+    "cat_breeds_count": 66
+  },
+  "data_disclaimer": "All data extracted from real datasets, no fabricated values",
+  "last_updated": "2025-09-25T11:17:10.312445"
+}

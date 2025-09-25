@@ -1,0 +1,823 @@
+{
+  "breed_genetic_risks": {
+    "border terrier": {
+      "longevity": 14.0,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "terrier"
+    },
+    "cairn terrier": {
+      "longevity": 13.84,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "lion jaw",
+        "heart problems"
+      ],
+      "type": "terrier"
+    },
+    "siberian husky": {
+      "longevity": 12.58,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "working"
+    },
+    "welsh springer spaniel": {
+      "longevity": 12.49,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "sporting"
+    },
+    "english cocker spaniel": {
+      "longevity": 11.66,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "sporting"
+    },
+    "cocker spaniel": {
+      "longevity": 12.5,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "eye",
+        "skin problems"
+      ],
+      "type": "sporting"
+    },
+    "lhasa apso": {
+      "longevity": 13.92,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "dry eye"
+      ],
+      "type": "non-sporting"
+    },
+    "english springer spaniel": {
+      "longevity": 12.54,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "hip",
+        "eye",
+        "skin problems; enzyme deficiency"
+      ],
+      "type": "sporting"
+    },
+    "shetland sheepdog": {
+      "longevity": 12.53,
+      "genetic_ailments_count": 5,
+      "genetic_ailments": [
+        "eye problems",
+        "deafness",
+        "skin + heart problems",
+        "blood clotting disorders"
+      ],
+      "type": "herding"
+    },
+    "west highland white terrier": {
+      "longevity": 12.8,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "lion jaw",
+        "dry eye",
+        "skin problems"
+      ],
+      "type": "terrier"
+    },
+    "brittany": {
+      "longevity": 12.92,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "sporting"
+    },
+    "german shorthaired pointer": {
+      "longevity": 11.46,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "sporting"
+    },
+    "pointer": {
+      "longevity": 12.42,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "sporting"
+    },
+    "tibetan spaniel": {
+      "longevity": 14.42,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "non-sporting"
+    },
+    "labrador retriever": {
+      "longevity": 12.04,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "elbows",
+        "hips",
+        "eyes"
+      ],
+      "type": "sporting"
+    },
+    "bichon frise": {
+      "longevity": 12.21,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "non-sporting"
+    },
+    "irish setter": {
+      "longevity": 11.63,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "hip",
+        "eye problems"
+      ],
+      "type": "sporting"
+    },
+    "samoyed": {
+      "longevity": 12.44,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "working"
+    },
+    "shih tzu": {
+      "longevity": 13.2,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "eye problems"
+      ],
+      "type": "toy"
+    },
+    "golden retriever": {
+      "longevity": 12.04,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "elbows",
+        "hips",
+        "eyes",
+        "heart"
+      ],
+      "type": "sporting"
+    },
+    "chesapeake bay retriever": {
+      "longevity": 9.48,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "sporting"
+    },
+    "papillon": {
+      "longevity": 13.0,
+      "genetic_ailments_count": 5,
+      "genetic_ailments": [
+        "cataracts",
+        "hair loss",
+        "heart",
+        "eye",
+        "blood clotting disorders"
+      ],
+      "type": "toy"
+    },
+    "gordon setter": {
+      "longevity": 11.1,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "no data"
+      ],
+      "type": "sporting"
+    },
+    "english setter": {
+      "longevity": 11.57,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "deafness",
+        "hip problems"
+      ],
+      "type": "sporting"
+    },
+    "pug": {
+      "longevity": 11.0,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "dry eye"
+      ],
+      "type": "toy"
+    },
+    "affenpinscher": {
+      "longevity": 11.42,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "toy"
+    },
+    "miniature schnauzer": {
+      "longevity": 11.81,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "liver",
+        "sinus problems"
+      ],
+      "type": "terrier"
+    },
+    "beagle": {
+      "longevity": 12.3,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "heart problems"
+      ],
+      "type": "hound"
+    },
+    "border collie": {
+      "longevity": 12.52,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "eye problems",
+        "deafness"
+      ],
+      "type": "herding"
+    },
+    "australian terrier": {
+      "longevity": 11.05,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "terrier"
+    },
+    "whippet": {
+      "longevity": 12.87,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "hound"
+    },
+    "boston terrier": {
+      "longevity": 10.92,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "breathing problems"
+      ],
+      "type": "non-sporting"
+    },
+    "briard": {
+      "longevity": 11.17,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "herding"
+    },
+    "bedlington terrier": {
+      "longevity": 13.51,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "liver",
+        "eye problems"
+      ],
+      "type": "terrier"
+    },
+    "cavalier king charles spaniel": {
+      "longevity": 11.29,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "heart",
+        "spinal problems"
+      ],
+      "type": "toy"
+    },
+    "dalmatian": {
+      "longevity": 11.27,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "deafness",
+        "urinary stones"
+      ],
+      "type": "non-sporting"
+    },
+    "flat-coated retriever": {
+      "longevity": 9.02,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "sporting"
+    },
+    "belgian tervuren": {
+      "longevity": 10.6,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "epilepsy",
+        "eye problems"
+      ],
+      "type": "herding"
+    },
+    "basset hound": {
+      "longevity": 11.43,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "blood",
+        "skin disorders"
+      ],
+      "type": "hound"
+    },
+    "poodle": {
+      "longevity": 11.95,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "fatal stomach bloat",
+        "skin disorder"
+      ],
+      "type": "non-sporting"
+    },
+    "staffordshire bull terrier": {
+      "longevity": 12.05,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "terrier"
+    },
+    "bouvier des flandres": {
+      "longevity": 10.34,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "herding"
+    },
+    "pembroke welsh corgi": {
+      "longevity": 12.25,
+      "genetic_ailments_count": 9,
+      "genetic_ailments": [
+        "cataracts + other eye problems",
+        "connective tissue",
+        "nerves",
+        "kidneys",
+        "spine",
+        "blood clotting disorders"
+      ],
+      "type": "herding"
+    },
+    "clumber spaniel": {
+      "longevity": 10.0,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "sporting"
+    },
+    "pomeranian": {
+      "longevity": 9.67,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "heart problems"
+      ],
+      "type": "toy"
+    },
+    "australian shepherd": {
+      "longevity": 12.28,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "deafness",
+        "hip problems"
+      ],
+      "type": "herding"
+    },
+    "pharaoh hound": {
+      "longevity": 11.83,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "hound"
+    },
+    "dandie dinmont terrier": {
+      "longevity": 12.17,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "terrier"
+    },
+    "greyhound": {
+      "longevity": 9.36,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "blood vessel disorders"
+      ],
+      "type": "hound"
+    },
+    "saluki": {
+      "longevity": 12.0,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "hound"
+    },
+    "australian cattle dog": {
+      "longevity": 11.67,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "herding"
+    },
+    "tibetan terrier": {
+      "longevity": 12.31,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "non-sporting"
+    },
+    "norfolk terrier": {
+      "longevity": 13.07,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "terrier"
+    },
+    "dachshund": {
+      "longevity": 12.63,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "skin",
+        "spinal problems"
+      ],
+      "type": "hound"
+    },
+    "chihuahua": {
+      "longevity": 16.5,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "knee problems"
+      ],
+      "type": "toy"
+    },
+    "doberman pinscher": {
+      "longevity": 10.33,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "heart",
+        "spine",
+        "blood clotting disorders"
+      ],
+      "type": "working"
+    },
+    "english toy spaniel": {
+      "longevity": 10.1,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "toy"
+    },
+    "newfoundland": {
+      "longevity": 9.32,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "hip problems",
+        "heart defects"
+      ],
+      "type": "working"
+    },
+    "basenji": {
+      "longevity": 13.58,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "kidney",
+        "eye problems",
+        "anaemia"
+      ],
+      "type": "hound"
+    },
+    "afghan hound": {
+      "longevity": 11.92,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "hound"
+    },
+    "old english sheepdog": {
+      "longevity": 11.19,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "herding"
+    },
+    "french bulldog": {
+      "longevity": 9.0,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "non-sporting"
+    },
+    "bernese mountain dog": {
+      "longevity": 7.56,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "meningitis",
+        "elbow + hip problems",
+        "complex immune disorder"
+      ],
+      "type": "working"
+    },
+    "boxer": {
+      "longevity": 8.81,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "eye",
+        "nerve",
+        "heart problems"
+      ],
+      "type": "working"
+    },
+    "brussels griffon": {
+      "longevity": 12.0,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "toy"
+    },
+    "maltese": {
+      "longevity": 12.25,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "heart problem"
+      ],
+      "type": "toy"
+    },
+    "giant schnauzer": {
+      "longevity": 10.0,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "working"
+    },
+    "rottweiler": {
+      "longevity": 9.11,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "heart",
+        "elbow",
+        "hip problems"
+      ],
+      "type": "working"
+    },
+    "yorkshire terrier": {
+      "longevity": 12.6,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "knee",
+        "liver",
+        "trachea",
+        "eye disorders"
+      ],
+      "type": "toy"
+    },
+    "irish wolfhound": {
+      "longevity": 6.94,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "heart",
+        "liver",
+        "hips"
+      ],
+      "type": "hound"
+    },
+    "scottish terrier": {
+      "longevity": 10.69,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "blood clotting disorder"
+      ],
+      "type": "terrier"
+    },
+    "bullmastiff": {
+      "longevity": 7.57,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "eye",
+        "hip problems"
+      ],
+      "type": "working"
+    },
+    "german shepherd": {
+      "longevity": 9.73,
+      "genetic_ailments_count": 8,
+      "genetic_ailments": [
+        "nerves",
+        "pancreas",
+        "blood (hemophilia)",
+        "hip joints"
+      ],
+      "type": "herding"
+    },
+    "mastiff": {
+      "longevity": 6.5,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "hip",
+        "heart problems"
+      ],
+      "type": "working"
+    },
+    "great dane": {
+      "longevity": 6.96,
+      "genetic_ailments_count": 4,
+      "genetic_ailments": [
+        "heart",
+        "spinal",
+        "hip problems",
+        "fatal stomach bloat"
+      ],
+      "type": "working"
+    },
+    "kerry blue terrier": {
+      "longevity": 9.4,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "heart problems"
+      ],
+      "type": "terrier"
+    },
+    "italian greyhound": {
+      "longevity": 10.02,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "toy"
+    },
+    "pekingese": {
+      "longevity": 11.56,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "knee problems"
+      ],
+      "type": "toy"
+    },
+    "rhodesian ridgeback": {
+      "longevity": 9.1,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "birth defects",
+        "hip problems"
+      ],
+      "type": "hound"
+    },
+    "bull terrier": {
+      "longevity": 10.21,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "heart problems",
+        "zinc metabolism disorder"
+      ],
+      "type": "terrier"
+    },
+    "saint bernard": {
+      "longevity": 7.78,
+      "genetic_ailments_count": 3,
+      "genetic_ailments": [
+        "heart",
+        "hip disorders",
+        "fatal stomach bloat"
+      ],
+      "type": "working"
+    },
+    "borzoi": {
+      "longevity": 9.08,
+      "genetic_ailments_count": 0,
+      "genetic_ailments": [],
+      "type": "hound"
+    },
+    "alaskan malamute": {
+      "longevity": 10.67,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "hip problems",
+        "dwarfism"
+      ],
+      "type": "working"
+    },
+    "bloodhound": {
+      "longevity": 6.75,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "fatal stomach bloat",
+        "skin problems"
+      ],
+      "type": "hound"
+    },
+    "chow chow": {
+      "longevity": 9.01,
+      "genetic_ailments_count": 2,
+      "genetic_ailments": [
+        "eye",
+        "hip problems"
+      ],
+      "type": "non-sporting"
+    },
+    "akita": {
+      "longevity": 10.16,
+      "genetic_ailments_count": 1,
+      "genetic_ailments": [
+        "hip problems"
+      ],
+      "type": "working"
+    },
+    "bulldog": {
+      "longevity": 6.29,
+      "genetic_ailments_count": 5,
+      "genetic_ailments": [
+        "breathing",
+        "hip",
+        "heart problems",
+        "dry eye"
+      ],
+      "type": "non-sporting"
+    }
+  },
+  "clinical_knowledge_base": {
+    "digestive": {
+      "key_terms": [
+        "dog",
+        "cat",
+        "diarrhea",
+        "rabbit",
+        "vomiting",
+        "fecal",
+        "suspected",
+        "puppy",
+        "vomited",
+        "food"
+      ],
+      "case_count": 400,
+      "sample_notes": [
+        "barium study performed to evaluate motility and rule out partial obstruction",
+        "rule out extra gi causes of vomiting  renal condition  pancreatitis  dka",
+        "my dog has developed sudden  severe abdominal distension"
+      ]
+    },
+    "mobility": {
+      "key_terms": [
+        "dog",
+        "cat",
+        "pain",
+        "rabbit",
+        "hind",
+        "radiographs",
+        "legs",
+        "joint",
+        "suspected",
+        "leg"
+      ],
+      "case_count": 400,
+      "sample_notes": [
+        "assess deep pain sensation in paralyzed limbs",
+        "implement regular turning schedule and padded bedding to prevent pressure sores in recumbent animals",
+        "measure thigh circumference bilaterally to quantify muscle atrophy"
+      ]
+    },
+    "parasites": {
+      "key_terms": [
+        "dog",
+        "cat",
+        "mites",
+        "flea",
+        "treatment",
+        "fecal",
+        "parasite",
+        "rabbit",
+        "tick",
+        "treat"
+      ],
+      "case_count": 400,
+      "sample_notes": [
+        "baermann technique used to recover lungworm larvae from feces",
+        "emphasize need to treat all dogs  cats  and ferrets in the household concurrently for ectoparasites",
+        "use imidacloprid moxidectin  advantage multi  for heartworm flea mite intestinal parasite control"
+      ]
+    }
+  },
+  "conditions": [
+    "digestive",
+    "mobility",
+    "parasites"
+  ],
+  "model_info": {
+    "accuracy": 0,
+    "feature_count": 1000,
+    "training_samples": 0
+  },
+  "sample_diagnoses": [
+    {
+      "description": "My dog has been vomiting and has diarrhea for 2 days",
+      "expected_condition": "digestive",
+      "pet_type": "dog",
+      "breed": "labrador retriever"
+    },
+    {
+      "description": "Cat is limping and reluctant to jump on furniture",
+      "expected_condition": "mobility",
+      "pet_type": "cat",
+      "breed": "persian"
+    },
+    {
+      "description": "Visible worms in stool and weight loss",
+      "expected_condition": "parasites",
+      "pet_type": "dog",
+      "breed": "german shepherd"
+    },
+    {
+      "description": "Excessive scratching and red skin patches",
+      "expected_condition": "skin",
+      "pet_type": "dog",
+      "breed": "golden retriever"
+    }
+  ]
+}

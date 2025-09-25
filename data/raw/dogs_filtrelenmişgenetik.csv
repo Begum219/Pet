@@ -1,0 +1,88 @@
+Breed,type,LONGEVITY(YEARS),NUMBER OF GENETIC AILMENTS,GENETIC AILMENTS
+Border Terrier,terrier,14.0,0,none
+Cairn Terrier,terrier,13.84,2,"'lion jaw', heart problems  "
+Siberian Husky,working,12.58,0,none
+Welsh Springer Spaniel,sporting,12.49,1,hip problems
+English Cocker Spaniel,sporting,11.66,0,none
+Cocker Spaniel,sporting,12.5,2,"eye, skin problems"
+Lhasa Apso,non-sporting,13.92,1,dry eye
+English Springer Spaniel,sporting,12.54,4,"hip, eye, skin problems; enzyme deficiency"
+Shetland Sheepdog,herding,12.53,5,"eye problems, deafness, skin + heart problems, blood clotting disorders"
+West Highland White Terrier,terrier,12.8,3,"'lion jaw', 'dry eye', skin problems"
+Brittany,sporting,12.92,0,none
+German Shorthaired Pointer,sporting,11.46,1,hip problems
+Pointer,sporting,12.42,1,hip problems
+Tibetan Spaniel,non-sporting,14.42,0,none
+Labrador Retriever,sporting,12.04,3,"elbows, hips, eyes"
+Bichon Frise,non-sporting,12.21,0,none
+Irish Setter,sporting,11.63,2,"hip, eye problems"
+Samoyed,working,12.44,1,hip problems
+Shih Tzu,toy,13.2,1,eye problems
+Golden Retriever,sporting,12.04,4,"elbows, hips, eyes, heart "
+Chesapeake Bay Retriever,sporting,9.48,1,hip problems
+Papillon,toy,13.0,5,"cataracts, hair loss, heart, eye, blood clotting disorders"
+Gordon Setter,sporting,11.1,1,no data
+English Setter,sporting,11.57,2,"deafness, hip problems"
+Pug,toy,11.0,1,'dry eye'
+Affenpinscher,toy,11.42,0,none
+Miniature Schnauzer,terrier,11.81,2,"liver, sinus problems"
+Beagle,hound,12.3,1,heart problems
+Border Collie,herding,12.52,2,"eye problems, deafness"
+Australian Terrier,terrier,11.05,0,none
+Whippet,hound,12.87,0,none
+Boston Terrier,non-sporting,10.92,1,breathing problems
+Briard,herding,11.17,1,hip problems
+Bedlington Terrier,terrier,13.51,2,"liver, eye problems"
+Cavalier King Charles Spaniel,toy,11.29,2,"heart, spinal problems"
+Dalmatian,non-sporting,11.27,2,"deafness, urinary stones"
+Flat-Coated Retriever,sporting,9.02,0,none
+Belgian Tervuren,herding,10.6,2,"epilepsy, eye problems"
+Basset Hound,hound,11.43,2,"blood, skin disorders"
+Poodle,non-sporting,11.95,2,"fatal stomach bloat, skin disorder"
+Staffordshire Bull Terrier,terrier,12.05,1,hip problems
+Bouvier des Flandres,herding,10.34,1,hip problems
+Pembroke Welsh Corgi,herding,12.25,9,"cataracts + other eye problems, connective tissue, nerves, kidneys, spine, blood clotting disorders"
+Clumber Spaniel,sporting,10.0,0,none
+Pomeranian,toy,9.67,1,heart problems
+Australian Shepherd,herding,12.28,2,"deafness, hip problems"
+Pharaoh Hound,hound,11.83,0,none
+Dandie Dinmont Terrier,terrier,12.17,0,none
+Greyhound,hound,9.36,1,blood vessel disorders
+Saluki,hound,12.0,0,none
+Australian Cattle Dog,herding,11.67,1,hip problems
+Tibetan Terrier,non-sporting,12.31,0,none
+Norfolk Terrier,terrier,13.07,0,none
+Dachshund,hound,12.63,2,"skin, spinal problems"
+Chihuahua,toy,16.5,1,knee problems
+Doberman Pinscher,working,10.33,4,"heart, spine, blood clotting disorders"
+English Toy Spaniel,toy,10.1,0,none
+Newfoundland,working,9.32,2,"hip problems, heart defects"
+Basenji,hound,13.58,3,"kidney, eye problems, anaemia"
+Afghan Hound,hound,11.92,0,none
+Old English Sheepdog,herding,11.19,1,hip problems
+French Bulldog,non-sporting,9.0,0,none
+Bernese Mountain Dog,working,7.56,4,"meningitis, elbow + hip problems, complex immune disorder"
+Boxer,working,8.81,4,"eye, nerve, heart problems"
+Brussels Griffon,toy,12.0,0,none
+Maltese,toy,12.25,1,heart problem
+Giant Schnauzer,working,10.0,1,hip problems
+Rottweiler,working,9.11,3,"heart, elbow, hip problems"
+Yorkshire Terrier,toy,12.6,4,"knee, liver, trachea, eye disorders"
+Irish Wolfhound,hound,6.94,3,"heart, liver, hips"
+Scottish Terrier,terrier,10.69,1,blood clotting disorder
+Bullmastiff,working,7.57,2,"eye, hip problems"
+German Shepherd,herding,9.73,8,"nerves, pancreas, blood (hemophilia), hip joints"
+Mastiff,working,6.5,2,"hip, heart problems"
+Great Dane,working,6.96,4,"heart, spinal, hip problems, fatal stomach bloat"
+Kerry Blue Terrier,terrier,9.4,1,heart problems
+Italian Greyhound,toy,10.02,0,none
+Pekingese,toy,11.56,1,knee problems
+Rhodesian Ridgeback,hound,9.1,2,"birth defects, hip problems"
+Bull Terrier,terrier,10.21,2,"heart problems, zinc metabolism disorder"
+Saint Bernard,working,7.78,3,"heart, hip disorders, fatal stomach bloat"
+Borzoi,hound,9.08,0,none
+Alaskan Malamute,working,10.67,2,"hip problems, dwarfism"
+Bloodhound,hound,6.75,2,"fatal stomach bloat, skin problems"
+Chow Chow,non-sporting,9.01,2,"eye, hip problems"
+Akita,working,10.16,1,hip problems
+Bulldog,non-sporting,6.29,5,"breathing, hip, heart problems, 'dry eye'"
