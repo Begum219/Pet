@@ -22,6 +22,81 @@ export const styles = StyleSheet.create({
     color: 'white',
     opacity: 0.9,
   },
+  
+  // AUTH BUTONLARI
+  authButtons: {
+    padding: 20,
+    gap: 15,
+  },
+  loginButton: {
+    backgroundColor: '#49a1dcff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 10,
+    gap: 10,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  registerButton: {
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#49a1dcff',
+    gap: 10,
+  },
+  registerButtonText: {
+    color: '#49a1dcff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f44336',
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 10,
+    gap: 5,
+  },
+  logoutButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  
+  // ŞİFREMİ UNUTTUM
+  forgotPasswordLink: {
+    alignSelf: 'flex-end',
+    marginTop: 10,
+    marginBottom: 5,
+  },
+  forgotPasswordText: {
+    color: '#49a1dcff',
+    fontSize: 13,
+    fontWeight: '600',
+    textDecorationLine: 'underline',
+  },
+  forgotPasswordHeader: {
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  forgotPasswordInfo: {
+    fontSize: 13,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 20,
+    lineHeight: 18,
+  },
+  
   section: {
     padding: 15,
   },
@@ -237,83 +312,85 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  
+  // TANI GEÇMİŞİ
   diagnosisCard: {
-  backgroundColor: '#fff',
-  borderRadius: 8,
-  marginBottom: 12,
-  borderWidth: 1,
-  borderColor: '#e0e0e0',
-},
-diagnosisHeader: {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: 12,
-  backgroundColor: '#f8f8f8',
-},
-diagnosisInfo: {
-  flex: 1,
-},
-diagnosisAnimal: {
-  fontSize: 15,
-  fontWeight: '600',
-  color: '#333',
-  marginBottom: 3,
-},
-diagnosisDate: {
-  fontSize: 12,
-  color: '#666',
-},
-diagnosisMain: {
-  padding: 12,
-},
-diagnosisTitle: {
-  fontSize: 15,
-  fontWeight: 'bold',
-  color: '#333',
-  marginBottom: 5,
-},
-diagnosisConfidence: {
-  fontSize: 13,
-  color: '#666',
-},
-diagnosisExpanded: {
-  padding: 12,
-  backgroundColor: '#fafafa',
-  borderTopWidth: 1,
-  borderTopColor: '#e0e0e0',
-},
-detailLabel: {
-  fontSize: 13,
-  fontWeight: '600',
-  color: '#333',
-  marginTop: 10,
-  marginBottom: 5,
-},
-detailText: {
-  fontSize: 13,
-  color: '#555',
-  lineHeight: 18,
-},
-recommendation: {
-  fontSize: 12,
-  color: '#555',
-  marginLeft: 5,
-  marginBottom: 3,
-},
-deleteDiagnosisButton: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: '#f44336',
-  padding: 10,
-  borderRadius: 6,
-  marginTop: 15,
-},
-deleteDiagnosisText: {
-  color: '#fff',
-  fontSize: 13,
-  fontWeight: '600',
-  marginLeft: 5,
-},
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  diagnosisHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    backgroundColor: '#f8f8f8',
+  },
+  diagnosisInfo: {
+    flex: 1,
+  },
+  diagnosisAnimal: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 3,
+  },
+  diagnosisDate: {
+    fontSize: 12,
+    color: '#666',
+  },
+  diagnosisMain: {
+    padding: 12,
+  },
+  diagnosisTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 5,
+  },
+  diagnosisConfidence: {
+    fontSize: 13,
+    color: '#666',
+  },
+  diagnosisExpanded: {
+    padding: 12,
+    backgroundColor: '#fafafa',
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
+  },
+  detailLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#333',
+    marginTop: 10,
+    marginBottom: 5,
+  },
+  detailText: {
+    fontSize: 13,
+    color: '#555',
+    lineHeight: 18,
+  },
+  recommendation: {
+    fontSize: 12,
+    color: '#555',
+    marginLeft: 5,
+    marginBottom: 3,
+  },
+  deleteDiagnosisButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f44336',
+    padding: 10,
+    borderRadius: 6,
+    marginTop: 15,
+  },
+  deleteDiagnosisText: {
+    color: '#fff',
+    fontSize: 13,
+    fontWeight: '600',
+    marginLeft: 5,
+  },
 });

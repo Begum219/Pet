@@ -1,8 +1,10 @@
 import { StyleSheet, TouchableOpacity, View, Text, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUserProfile, getAllPets, getDiagnosisHistory } from '../../utils/database';
 
 interface UserProfile {
@@ -21,25 +23,52 @@ interface Pet {
 
 export default function HomeScreen() {
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [activePet, setActivePet] = useState<Pet | null>(null);
+  const [petCount, setPetCount] = useState(0);
   const [diagnosisCount, setDiagnosisCount] = useState(0);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // Ekran her odaklandığında verileri yükle
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, [])
+  );
 
-  const loadData = () => {
-    const profile = getUserProfile();
-    setUserProfile(profile as UserProfile);
+  const loadData = async () => {
+    try {
+      // Login durumunu kontrol et
+      const loggedIn = await AsyncStorage.getItem('isLoggedIn');
+      setIsLoggedIn(loggedIn === 'true');
 
-    const pets = getAllPets();
-    if (pets.length > 0) {
-      setActivePet(pets[0] as Pet);
+      if (loggedIn === 'true') {
+        // Kullanıcı profili
+        const profile = getUserProfile();
+        setUserProfile(profile as UserProfile);
+
+        // Hayvanlar
+        const pets = getAllPets();
+        setPetCount(pets.length);
+        if (pets.length > 0) {
+          setActivePet(pets[0] as Pet);
+        } else {
+          setActivePet(null);
+        }
+
+        // Tanı geçmişi
+        const history = getDiagnosisHistory();
+        setDiagnosisCount(history.length);
+      } else {
+        // Çıkış yapılmışsa tüm verileri temizle
+        setUserProfile(null);
+        setActivePet(null);
+        setPetCount(0);
+        setDiagnosisCount(0);
+      }
+    } catch (error) {
+      console.error('Veri yükleme hatası:', error);
     }
-
-    const history = getDiagnosisHistory();
-    setDiagnosisCount(history.length);
   };
 
   return (
@@ -54,7 +83,7 @@ export default function HomeScreen() {
             <Ionicons name="person-circle" size={80} color="#49a1dcff" />
           </View>
           
-          {userProfile ? (
+          {isLoggedIn && userProfile ? (
             <>
               <Text style={styles.userName}>
                 {userProfile.first_name} {userProfile.last_name}
@@ -65,13 +94,17 @@ export default function HomeScreen() {
           ) : (
             <>
               <Text style={styles.userName}>Hoş Geldiniz</Text>
-              <TouchableOpacity onPress={() => router.push('/profile')}>
-                <Text style={styles.setupLink}>Profil oluşturmak için tıklayın</Text>
+              <Text style={styles.guestText}>Misafir Kullanıcı</Text>
+              <TouchableOpacity 
+                style={styles.loginPromptButton}
+                onPress={() => router.push('/profile')}
+              >
+                <Text style={styles.setupLink}>Giriş Yap / Kayıt Ol</Text>
               </TouchableOpacity>
             </>
           )}
 
-          {activePet && (
+          {activePet && isLoggedIn && (
             <View style={styles.petInfo}>
               <Text style={styles.petIcon}>{activePet.type === 'dog' ? '🐕' : '🐱'}</Text>
               <View>
@@ -85,7 +118,11 @@ export default function HomeScreen() {
         {/* App Başlık */}
         <View style={styles.welcomeSection}>
           <Text style={styles.appTitle}>Pet Sense</Text>
-          <Text style={styles.welcomeText}>Hoş Geldiniz</Text>
+          <Text style={styles.welcomeText}>
+            {isLoggedIn && userProfile 
+              ? `Merhaba ${userProfile.first_name}!` 
+              : 'Hoş Geldiniz'}
+          </Text>
           <Text style={styles.subtitle}>
             Evcil hayvanınızın sağlığı için AI destekli tanı sistemi
           </Text>
@@ -116,7 +153,7 @@ export default function HomeScreen() {
           </View>
           <View style={styles.statCard}>
             <Ionicons name="paw" size={24} color="#4CAF50" />
-            <Text style={styles.statNumber}>{activePet ? '1' : '0'}</Text>
+            <Text style={styles.statNumber}>{petCount}</Text>
             <Text style={styles.statLabel}>Hayvan</Text>
           </View>
         </View>
@@ -171,11 +208,22 @@ const styles = StyleSheet.create({
     color: '#666',
     marginBottom: 15,
   },
+  guestText: {
+    fontSize: 14,
+    color: '#999',
+    marginBottom: 10,
+  },
+  loginPromptButton: {
+    backgroundColor: '#49a1dcff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    marginTop: 5,
+  },
   setupLink: {
     fontSize: 14,
-    color: '#49a1dcff',
+    color: '#fff',
     fontWeight: 'bold',
-    marginTop: 10,
   },
   petInfo: {
     flexDirection: 'row',

@@ -1,6 +1,7 @@
 import { ScrollView, Alert, TouchableOpacity, View, Text, TextInput, Modal } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { 
   getUserProfile, 
   saveUserProfile, 
@@ -34,10 +35,14 @@ interface Pet {
 }
 
 export default function ProfileScreen() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [pets, setPets] = useState<Pet[]>([]);
   const [showUserModal, setShowUserModal] = useState(false);
   const [showPetModal, setShowPetModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const [editingPet, setEditingPet] = useState<Pet | null>(null);
   const [diagnosisCount, setDiagnosisCount] = useState(0);
   const [diagnoses, setDiagnoses] = useState<any[]>([]);
@@ -47,6 +52,13 @@ export default function ProfileScreen() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Şifremi Unuttum için state'ler
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetPhone, setResetPhone] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [petName, setPetName] = useState('');
   const [petType, setPetType] = useState('dog');
@@ -57,8 +69,20 @@ export default function ProfileScreen() {
   const [petBloodType, setPetBloodType] = useState('');
 
   useEffect(() => {
-    loadData();
+    checkLoginStatus();
   }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const loggedIn = await AsyncStorage.getItem('isLoggedIn');
+      if (loggedIn === 'true') {
+        setIsLoggedIn(true);
+        loadData();
+      }
+    } catch (error) {
+      console.error('Login check error:', error);
+    }
+  };
 
   const loadData = () => {
     const profile = getUserProfile();
@@ -79,6 +103,131 @@ export default function ProfileScreen() {
       setEmail((profile as any).email || '');
       setPhone((profile as any).phone || '');
     }
+  };
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Hata', 'Email ve şifre gerekli');
+      return;
+    }
+
+    try {
+      const savedEmail = await AsyncStorage.getItem('userEmail');
+      const savedPassword = await AsyncStorage.getItem('userPassword');
+
+      if (savedEmail === email && savedPassword === password) {
+        await AsyncStorage.setItem('isLoggedIn', 'true');
+        setIsLoggedIn(true);
+        setShowAuthModal(false);
+        setEmail('');
+        setPassword('');
+        loadData();
+        Alert.alert('Başarılı', 'Giriş yapıldı!');
+      } else {
+        Alert.alert('Hata', 'Email veya şifre yanlış');
+      }
+    } catch (error) {
+      Alert.alert('Hata', 'Giriş yapılamadı');
+    }
+  };
+
+  const handleRegister = async () => {
+    if (!firstName || !lastName || !email || !password) {
+      Alert.alert('Hata', 'Tüm alanları doldurun');
+      return;
+    }
+
+    try {
+      await AsyncStorage.setItem('userEmail', email);
+      await AsyncStorage.setItem('userPassword', password);
+      await AsyncStorage.setItem('isLoggedIn', 'true');
+
+      const saved = saveUserProfile({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone
+      });
+
+      if (saved) {
+        setIsLoggedIn(true);
+        setShowAuthModal(false);
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setPassword('');
+        loadData();
+        Alert.alert('Başarılı', 'Kayıt tamamlandı!');
+      }
+    } catch (error) {
+      Alert.alert('Hata', 'Kayıt yapılamadı');
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!resetEmail || !resetPhone || !newPassword || !confirmPassword) {
+      Alert.alert('Hata', 'Tüm alanları doldurun');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      Alert.alert('Hata', 'Şifreler eşleşmiyor');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      Alert.alert('Hata', 'Şifre en az 6 karakter olmalıdır');
+      return;
+    }
+
+    try {
+      const savedEmail = await AsyncStorage.getItem('userEmail');
+      const profile = getUserProfile();
+      const savedPhone = profile ? (profile as any).phone : '';
+
+      if (savedEmail === resetEmail && savedPhone === resetPhone) {
+        await AsyncStorage.setItem('userPassword', newPassword);
+        Alert.alert('Başarılı', 'Şifreniz başarıyla değiştirildi!', [
+          {
+            text: 'Tamam',
+            onPress: () => {
+              setShowForgotPasswordModal(false);
+              setResetEmail('');
+              setResetPhone('');
+              setNewPassword('');
+              setConfirmPassword('');
+            }
+          }
+        ]);
+      } else {
+        Alert.alert('Hata', 'Email veya telefon numarası hatalı');
+      }
+    } catch (error) {
+      Alert.alert('Hata', 'Şifre sıfırlama işlemi başarısız');
+    }
+  };
+
+  const handleLogout = async () => {
+    Alert.alert(
+      'Çıkış Yap',
+      'Çıkış yapmak istediğinizden emin misiniz?',
+      [
+        { text: 'İptal', style: 'cancel' },
+        {
+          text: 'Çıkış Yap',
+          style: 'destructive',
+          onPress: async () => {
+            await AsyncStorage.setItem('isLoggedIn', 'false');
+            setIsLoggedIn(false);
+            setUserProfile(null);
+            setPets([]);
+            setDiagnoses([]);
+            Alert.alert('Başarılı', 'Çıkış yapıldı');
+          }
+        }
+      ]
+    );
   };
 
   const getPetName = (petId: number | null) => {
@@ -212,11 +361,220 @@ export default function ProfileScreen() {
     );
   };
 
+  if (!isLoggedIn) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Profil</Text>
+          <Text style={styles.subtitle}>Giriş yapın veya kayıt olun</Text>
+        </View>
+
+        <View style={styles.authButtons}>
+          <TouchableOpacity 
+            style={styles.loginButton}
+            onPress={() => {
+              setAuthMode('login');
+              setShowAuthModal(true);
+            }}
+          >
+            <Ionicons name="log-in-outline" size={24} color="#fff" />
+            <Text style={styles.loginButtonText}>Giriş Yap</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.registerButton}
+            onPress={() => {
+              setAuthMode('register');
+              setShowAuthModal(true);
+            }}
+          >
+            <Ionicons name="person-add-outline" size={24} color="#49a1dcff" />
+            <Text style={styles.registerButtonText}>Kayıt Ol</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* AUTH MODAL */}
+        <Modal visible={showAuthModal} animationType="slide" transparent={true}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>
+                {authMode === 'login' ? 'Giriş Yap' : 'Kayıt Ol'}
+              </Text>
+
+              {authMode === 'register' && (
+                <>
+                  <Text style={styles.inputLabel}>Ad *</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Adınız"
+                    value={firstName}
+                    onChangeText={setFirstName}
+                  />
+
+                  <Text style={styles.inputLabel}>Soyad *</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Soyadınız"
+                    value={lastName}
+                    onChangeText={setLastName}
+                  />
+
+                  <Text style={styles.inputLabel}>Telefon</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="0555 123 45 67"
+                    value={phone}
+                    onChangeText={setPhone}
+                    keyboardType="phone-pad"
+                  />
+                </>
+              )}
+
+              <Text style={styles.inputLabel}>Email *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="ornek@email.com"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+
+              <Text style={styles.inputLabel}>Şifre *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Şifreniz"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+              />
+
+              {authMode === 'login' && (
+                <TouchableOpacity 
+                  style={styles.forgotPasswordLink}
+                  onPress={() => {
+                    setShowAuthModal(false);
+                    setShowForgotPasswordModal(true);
+                  }}
+                >
+                  <Text style={styles.forgotPasswordText}>Şifremi Unuttum</Text>
+                </TouchableOpacity>
+              )}
+
+              <View style={styles.modalButtons}>
+                <TouchableOpacity 
+                  style={[styles.modalButton, styles.cancelButton]} 
+                  onPress={() => {
+                    setShowAuthModal(false);
+                    setFirstName('');
+                    setLastName('');
+                    setEmail('');
+                    setPhone('');
+                    setPassword('');
+                  }}
+                >
+                  <Text style={styles.cancelButtonText}>İptal</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.modalButton, styles.saveButton]} 
+                  onPress={authMode === 'login' ? handleLogin : handleRegister}
+                >
+                  <Text style={styles.saveButtonText}>
+                    {authMode === 'login' ? 'Giriş' : 'Kayıt'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+
+        {/* ŞİFREMİ UNUTTUM MODAL */}
+        <Modal visible={showForgotPasswordModal} animationType="slide" transparent={true}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.forgotPasswordHeader}>
+                <Ionicons name="key-outline" size={32} color="#49a1dcff" />
+                <Text style={styles.modalTitle}>Şifremi Unuttum</Text>
+              </View>
+              
+              <Text style={styles.forgotPasswordInfo}>
+                Şifrenizi sıfırlamak için kayıt olurken kullandığınız email ve telefon numarasını girin.
+              </Text>
+
+              <Text style={styles.inputLabel}>Email *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Kayıtlı email adresiniz"
+                value={resetEmail}
+                onChangeText={setResetEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+
+              <Text style={styles.inputLabel}>Telefon Numarası *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Kayıtlı telefon numaranız"
+                value={resetPhone}
+                onChangeText={setResetPhone}
+                keyboardType="phone-pad"
+              />
+
+              <Text style={styles.inputLabel}>Yeni Şifre *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="En az 6 karakter"
+                value={newPassword}
+                onChangeText={setNewPassword}
+                secureTextEntry
+              />
+
+              <Text style={styles.inputLabel}>Yeni Şifre (Tekrar) *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Şifrenizi tekrar girin"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+              />
+
+              <View style={styles.modalButtons}>
+                <TouchableOpacity 
+                  style={[styles.modalButton, styles.cancelButton]} 
+                  onPress={() => {
+                    setShowForgotPasswordModal(false);
+                    setResetEmail('');
+                    setResetPhone('');
+                    setNewPassword('');
+                    setConfirmPassword('');
+                  }}
+                >
+                  <Text style={styles.cancelButtonText}>İptal</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.modalButton, styles.saveButton]} 
+                  onPress={handleForgotPassword}
+                >
+                  <Text style={styles.saveButtonText}>Şifremi Sıfırla</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Profil</Text>
         <Text style={styles.subtitle}>Kullanıcı ve hayvan bilgileri</Text>
+        
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Ionicons name="log-out-outline" size={20} color="#fff" />
+          <Text style={styles.logoutButtonText}>Çıkış Yap</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
@@ -285,7 +643,6 @@ export default function ProfileScreen() {
         )}
       </View>
 
-      {/* TANI GEÇMİŞİ BÖLÜMÜ */}
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <Ionicons name="medical" size={20} color="#49a1dcff" />
@@ -382,7 +739,6 @@ export default function ProfileScreen() {
         </View>
       </View>
 
-      {/* Kullanıcı Profili Modal */}
       <Modal visible={showUserModal} animationType="slide" transparent={true}>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -440,7 +796,6 @@ export default function ProfileScreen() {
         </View>
       </Modal>
 
-      {/* Pet Modal */}
       <Modal visible={showPetModal} animationType="slide" transparent={true}>
         <View style={styles.modalOverlay}>
           <ScrollView style={styles.modalScrollContent}>

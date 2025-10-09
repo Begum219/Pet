@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   
-  // YENİ: PET SEÇİCİ STYLE'LARI
+  // PET SEÇİCİ STYLE'LARI
   petSelectorSection: {
     backgroundColor: 'white',
     padding: 15,
@@ -138,7 +138,6 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
-  // PET SEÇİCİ STYLE'LARI BİTTİ
   
   inputSection: {
     padding: 20,
@@ -338,6 +337,39 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     color: '#333',
   },
+  
+  // YENİ: FAVORİ FİLTRE STYLE'LARI
+  filterContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 15,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  favoriteFilterButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    backgroundColor: '#fff',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#ff6b6b',
+  },
+  favoriteFilterActive: {
+    backgroundColor: '#ff6b6b',
+  },
+  favoriteFilterText: {
+    color: '#ff6b6b',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  favoriteFilterTextActive: {
+    color: '#fff',
+  },
+  
   loadingContainer: {
     padding: 40,
     alignItems: 'center',
@@ -364,6 +396,16 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#49a1dcff',
   },
+  
+  // YENİ: VETERİNER KART HEADER (Favori butonu için)
+  vetCardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  vetInfo: {
+    flex: 1,
+  },
+  
   vetHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -392,6 +434,13 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 5,
   },
+  
+  // YENİ: FAVORİ BUTONU
+  favoriteButton: {
+    padding: 5,
+    marginLeft: 10,
+  },
+  
   openStatus: {
     fontSize: 12,
     fontWeight: 'bold',
@@ -417,23 +466,22 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   searchContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
-    position: 'relative',
-  },
-  searchInput: {
-    flex: 1,
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 8,
-    padding: 12,
+    paddingHorizontal: 12,
     backgroundColor: 'white',
+  },
+  searchInput: {
+    flex: 1,
+    padding: 10,
     fontSize: 16,
+    color: '#333',
   },
   clearButton: {
-    position: 'absolute',
-    right: 10,
     padding: 5,
   },
   clearButtonText: {

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initDatabase, saveDiagnosis, getAllPets, getAllDiagnoses } from '../../utils/database';
 import { styles } from '../../styles/exploreStyles';
 
@@ -22,7 +23,7 @@ if (Platform.OS !== 'web') {
   }
 }
 
-const API_BASE_URL = 'http://10.212.87.189:8001';
+const API_BASE_URL = 'http://10.13.79.189:8001';
 
 interface DiagnosisResult {
   primary_diagnosis?: {
@@ -74,12 +75,16 @@ export default function TabOneScreen() {
   const [selectedPet, setSelectedPet] = useState<Pet | null>(null);
   const [showPetSelector, setShowPetSelector] = useState(false);
   const [diagnosisMode, setDiagnosisMode] = useState<'my-pet' | 'other-pet'>('other-pet');
+  
+  // YENİ: Favori sistemi için state'ler
+  const [favoriteVets, setFavoriteVets] = useState<string[]>([]);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
   useEffect(() => {
     initDatabase();
     loadPets();
+    loadFavorites(); // YENİ: Favorileri yükle
     
-    // Geliştirme sırasında veritabanını kontrol et
     if (__DEV__) {
       const allPets = getAllPets();
       console.log('📊 VERİTABANI - PETS:', JSON.stringify(allPets, null, 2));
@@ -91,11 +96,46 @@ export default function TabOneScreen() {
     setPets(allPets as Pet[]);
   };
 
-  const filteredVets = vets.filter(vet => 
-    searchQuery.trim() === '' || 
-    vet.clinic_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    vet.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // YENİ: Favorileri AsyncStorage'dan yükle
+  const loadFavorites = async () => {
+    try {
+      const saved = await AsyncStorage.getItem('favoriteVets');
+      if (saved) {
+        setFavoriteVets(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.error('Favori yükleme hatası:', error);
+    }
+  };
+
+  // YENİ: Favori ekleme/çıkarma
+  const toggleFavorite = async (vetId: string) => {
+    try {
+      let newFavorites: string[];
+      if (favoriteVets.includes(vetId)) {
+        newFavorites = favoriteVets.filter(id => id !== vetId);
+        Alert.alert('Kaldırıldı', 'Favorilerden çıkarıldı');
+      } else {
+        newFavorites = [...favoriteVets, vetId];
+        Alert.alert('Eklendi', 'Favorilere eklendi');
+      }
+      setFavoriteVets(newFavorites);
+      await AsyncStorage.setItem('favoriteVets', JSON.stringify(newFavorites));
+    } catch (error) {
+      Alert.alert('Hata', 'Favori kaydedilemedi');
+    }
+  };
+
+  // YENİ: Favori filtrelemesi eklenmiş
+  const filteredVets = vets.filter(vet => {
+    const matchesSearch = searchQuery.trim() === '' || 
+      vet.clinic_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      vet.name.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesFavorite = !showFavoritesOnly || favoriteVets.includes(vet.id);
+    
+    return matchesSearch && matchesFavorite;
+  });
 
   const fetchNearbyVets = async (latitude: number, longitude: number) => {
     setLoadingVets(true);
@@ -116,7 +156,6 @@ export default function TabOneScreen() {
           address: place.vicinity || 'Adres bilgisi yok',
         }));
         
-        // Telefon numaralarını al
         const vetsWithDetails = await Promise.all(
           veterinarians.map(async (vet) => {
             try {
@@ -235,7 +274,6 @@ export default function TabOneScreen() {
           const petName = diagnosisMode === 'my-pet' ? selectedPet?.name : (currentPetType === 'dog' ? 'Köpek' : 'Kedi');
           Alert.alert('Başarılı', `${petName} için tanı kaydedildi!`);
           
-          // Kaydedilen tüm tanıları konsola yazdır
           if (__DEV__) {
             const allDiagnoses = getAllDiagnoses();
             console.log('💾 VERİTABANI - TÜM TANILAR:', JSON.stringify(allDiagnoses, null, 2));
@@ -288,7 +326,6 @@ export default function TabOneScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Mod Seçimi */}
       <View style={styles.petSelectorSection}>
         <Text style={styles.label}>Tanı türünü seçin:</Text>
         <View style={styles.petTypeContainer}>
@@ -311,7 +348,6 @@ export default function TabOneScreen() {
         </View>
       </View>
 
-      {/* Yabancı Hayvan için Dog/Cat Seçimi */}
       {diagnosisMode === 'other-pet' && (
         <View style={styles.inputSection}>
           <Text style={styles.label}>Pet Türü:</Text>
@@ -336,7 +372,6 @@ export default function TabOneScreen() {
         </View>
       )}
 
-      {/* Kendi Hayvanları için Pet Seçimi */}
       {diagnosisMode === 'my-pet' && (
         pets.length > 0 ? (
           <View style={styles.petSelectorSection}>
@@ -400,7 +435,6 @@ export default function TabOneScreen() {
         )
       )}
 
-      {/* Semptom Girişi */}
       <View style={styles.inputSection}>
         <Text style={styles.label}>Semptomlar (İngilizce):</Text>
         <Text style={styles.helper}>
@@ -500,24 +534,42 @@ export default function TabOneScreen() {
 
       {showMap && (
         <View style={styles.mapSection}>
-          <Text style={styles.mapTitle}>📍 Yakındaki Veteriner Klinikleri (OpenStreetMap)</Text>
+          <Text style={styles.mapTitle}>📍 Yakındaki Veteriner Klinikleri</Text>
           
-          <View style={styles.searchContainer}>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Veteriner veya klinik ara..."
-              placeholderTextColor="#999"
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-            />
-            {searchQuery.length > 0 && (
-              <TouchableOpacity 
-                style={styles.clearButton}
-                onPress={() => setSearchQuery('')}
-              >
-                <Text style={styles.clearButtonText}>✕</Text>
-              </TouchableOpacity>
-            )}
+          {/* YENİ: Arama ve Favori Filtreleme */}
+          <View style={styles.filterContainer}>
+            <View style={styles.searchContainer}>
+              <Ionicons name="search" size={20} color="#999" style={styles.searchIcon} />
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Veteriner veya klinik ara..."
+                placeholderTextColor="#999"
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+              />
+              {searchQuery.length > 0 && (
+                <TouchableOpacity 
+                  style={styles.clearButton}
+                  onPress={() => setSearchQuery('')}
+                >
+                  <Text style={styles.clearButtonText}>✕</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            
+            <TouchableOpacity 
+              style={[styles.favoriteFilterButton, showFavoritesOnly && styles.favoriteFilterActive]}
+              onPress={() => setShowFavoritesOnly(!showFavoritesOnly)}
+            >
+              <Ionicons 
+                name={showFavoritesOnly ? "heart" : "heart-outline"} 
+                size={20} 
+                color={showFavoritesOnly ? "#fff" : "#ff6b6b"} 
+              />
+              <Text style={[styles.favoriteFilterText, showFavoritesOnly && styles.favoriteFilterTextActive]}>
+                Favoriler
+              </Text>
+            </TouchableOpacity>
           </View>
           
           {loadingVets ? (
@@ -529,15 +581,13 @@ export default function TabOneScreen() {
             <>
               <Text style={styles.resultCount}>
                 {filteredVets.length} veteriner bulundu
+                {showFavoritesOnly && ` (${favoriteVets.length} favori)`}
               </Text>
               
               {Platform.OS === 'web' ? (
                 <View style={styles.webWarning}>
                   <Text style={styles.webWarningText}>
                     🌐 Harita özelliği sadece mobil cihazlarda çalışır.
-                  </Text>
-                  <Text style={styles.webWarningText}>
-                    Lütfen Expo Go uygulaması ile telefon/tablet'inizden test edin.
                   </Text>
                 </View>
               ) : (
@@ -561,7 +611,7 @@ export default function TabOneScreen() {
                         }}
                         title={vet.clinic_name}
                         description={`${vet.address || ''}`}
-                        pinColor="#49a1dcff"
+                        pinColor={favoriteVets.includes(vet.id) ? "#ff6b6b" : "#49a1dcff"}
                       />
                     ))}
                   </MapView>
@@ -572,29 +622,43 @@ export default function TabOneScreen() {
                 {filteredVets.length > 0 ? (
                   filteredVets.map((vet) => (
                     <View key={vet.id} style={styles.vetCard}>
-                      <View style={styles.vetHeader}>
-                        <Text style={styles.vetName}>{vet.clinic_name}</Text>
-                        {vet.rating && (
-                          <Text style={styles.rating}>⭐ {vet.rating}</Text>
-                        )}
+                      {/* YENİ: Favori butonu eklenmiş */}
+                      <View style={styles.vetCardHeader}>
+                        <View style={styles.vetInfo}>
+                          <View style={styles.vetHeader}>
+                            <Text style={styles.vetName}>{vet.clinic_name}</Text>
+                            {vet.rating && (
+                              <Text style={styles.rating}>⭐ {vet.rating}</Text>
+                            )}
+                          </View>
+                          {vet.address && (
+                            <Text style={styles.vetAddress}>📍 {vet.address}</Text>
+                          )}
+                          <Text style={styles.vetPhone}>📞 {vet.phone || 'Telefon bilgisi yok'}</Text>
+                        </View>
+                        
+                        {/* YENİ: Favori kalp ikonu */}
+                        <TouchableOpacity 
+                          style={styles.favoriteButton}
+                          onPress={() => toggleFavorite(vet.id)}
+                        >
+                          <Ionicons 
+                            name={favoriteVets.includes(vet.id) ? "heart" : "heart-outline"} 
+                            size={28} 
+                            color={favoriteVets.includes(vet.id) ? "#ff6b6b" : "#ccc"} 
+                          />
+                        </TouchableOpacity>
                       </View>
-                      {vet.address && (
-                        <Text style={styles.vetAddress}>📍 {vet.address}</Text>
-                      )}
-                      <Text style={styles.vetPhone}>📞 {vet.phone || 'Telefon bilgisi yok'}</Text>
-                      {vet.open_now !== undefined && vet.open_now !== null && (
-                        <Text style={[styles.openStatus, vet.open_now ? styles.open : styles.closed]}>
-                          {vet.open_now ? '🟢 Açık' : '🔴 Kapalı'}
-                        </Text>
-                      )}
                     </View>
                   ))
                 ) : (
                   <View style={styles.noResultCard}>
                     <Text style={styles.noResultText}>
-                      {vets.length === 0 ? 
-                        '📍 Veteriner aramak için butona basın' :
-                        '🔍 Arama kriterinize uygun veteriner bulunamadı'}
+                      {showFavoritesOnly ? 
+                        '💔 Henüz favori veterineriniz yok' :
+                        vets.length === 0 ? 
+                          '📍 Veteriner aramak için butona basın' :
+                          '🔍 Arama kriterinize uygun veteriner bulunamadı'}
                     </Text>
                   </View>
                 )}
